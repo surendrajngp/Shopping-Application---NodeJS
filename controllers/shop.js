@@ -13,3 +13,17 @@ exports.getIndex = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.getProductDetails = (req, res, next) => {
+  const prodID = req.params.productID; // productId by user
+
+  Product.findOne(prodID)
+    .then(([[product]]) => {
+      res.render("shop/product-details", {
+        title: "Product Details",
+        path: "",
+        product: product,
+      });
+    })
+    .catch((err) => console.log(err));
+};

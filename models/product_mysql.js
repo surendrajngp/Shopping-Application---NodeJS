@@ -18,4 +18,8 @@ module.exports = class Product {
   static findAll() {
     return db.execute("SELECT * FROM products");
   }
+
+  static findOne(id) {
+    return db.execute("SELECT * FROM products WHERE id = ?", [id]);
+  }
 };
