@@ -4,6 +4,7 @@ const path = require("path");
 
 const errorController = require("./controllers/404");
 const shopRoutes = require("./routes/shop");
+const adminRoutes = require("./routes/admin");
 
 // TODO: Creating app
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Using  Routes
 app.use(shopRoutes);
+app.use(adminRoutes);
 
 // 404 Error Page
 app.use(errorController.get404Error);
