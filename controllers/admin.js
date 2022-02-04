@@ -24,3 +24,13 @@ exports.postAddProduct = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.getAdminProducts = (req, res, next) => {
+  Product.findAll().then(([result]) => {
+    res.render("admin/products", {
+      title: "Admin Products",
+      path: "/admin/products",
+      products: result,
+    });
+  });
+};
