@@ -22,4 +22,11 @@ module.exports = class Product {
   static findOne(id) {
     return db.execute("SELECT * FROM products WHERE id = ?", [id]);
   }
+
+  updateOne(id) {
+    return db.execute(
+      "UPDATE products SET title = ?, price = ?, description = ?, imgUrl = ? WHERE id = ?",
+      [this.title, this.price, this.description, this.imgUrl, id]
+    );
+  }
 };

@@ -8,24 +8,36 @@
             <h1 class="text-center mb-2">
                 Add Product
             </h1>
-            <form action="/add-product" method="post">
+            <form action=" <% if(path=="/admin/add-product") { %>/add-product <% } else { %>/edit-product<% } %>"   method="post">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" name="title" id="title">
+                    <input type="text" class="form-control" name="title" id="title" <% if(editing) { %> value="<%= product.title %>"  <% } %> >
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea name="description" id="description" cols="80" rows="5" class="form-control"></textarea>
-                </div>
+                    <input type="text" name="description" id="description" class="form-control" <% if(editing) { %> value="<%= product.description %>" <% } %> >
+                </div>  
                 <div class="mb-3">
                     <label for="imgUrl" class="form-label">Image Url</label>
-                    <input type="text" class="form-control" name="imgUrl" id="imgUrl">
+                    <input type="text" class="form-control" name="imgUrl" id="imgUrl" <% if(editing) { %> value="<%= product.imgUrl %>" <% } %>>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" name="price" id="price" min="0">
+                    <input type="number" class="form-control" name="price" id="price" min="0" <% if(editing) { %> value="<%= product.price %>" <% } %>>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Product</button>
+                
+                <% if(editing){ %>
+                    <input type="hidden" name="productID" class="form-control" value="<%= product.id %>" >
+                <% }%> 
+
+                <button type="submit" class="btn btn-primary">
+
+                <% if(path == "/admin/add-product") { %>
+                    Add Product
+                <% } else { %>
+                    Update Product
+                <% } %> 
+                </button>
 
             </form>
         </div>
