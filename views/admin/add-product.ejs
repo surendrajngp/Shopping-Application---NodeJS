@@ -6,7 +6,11 @@
     <main>
         <div class="w-50 mx-auto my-3">
             <h1 class="text-center mb-2">
+                <% if(editing) { %> 
+                Edit Product
+                <% } else { %> 
                 Add Product
+                <% } %> 
             </h1>
             <form action=" <% if(path=="/admin/add-product") { %>/add-product <% } else { %>/edit-product<% } %>"   method="post">
                 <div class="mb-3">
@@ -30,7 +34,7 @@
                     <input type="hidden" name="productID" class="form-control" value="<%= product.id %>" >
                 <% }%> 
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-success">
 
                 <% if(path == "/admin/add-product") { %>
                     Add Product
