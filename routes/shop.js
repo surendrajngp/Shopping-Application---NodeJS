@@ -9,4 +9,6 @@ router.get("/", shopController.getIndex);
 
 router.get("/product-details/:productID", shopController.getProductDetails);
 
+router.post("/add-to-cart", shopController.postAddToCart);
+
 module.exports = router;

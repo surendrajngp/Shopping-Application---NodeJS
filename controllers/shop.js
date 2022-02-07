@@ -1,4 +1,5 @@
 const Product = require("../models/product_mysql");
+const Cart = require("../models/cart_mysql");
 
 exports.getIndex = (req, res, next) => {
   Product.findAll()
@@ -26,4 +27,32 @@ exports.getProductDetails = (req, res, next) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+exports.postAddToCart = (req, res, next) => {
+  const prodID = req.body.productID;
+
+  Cart.findOne(prodID)
+    .then(([product]) => {
+      if (product.length > 0) {
+        Cart.update(prodID, 1)
+          .then(() => {
+            res.redirect("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        Cart.addToCart(prodID)
+          .then(() => {
+            res.redirect("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
