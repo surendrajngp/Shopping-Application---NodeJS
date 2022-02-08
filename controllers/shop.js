@@ -88,3 +88,23 @@ exports.getCart = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.deleteCartProduct = (req, res, next) => {
+  const prodID = req.params.id;
+
+  Cart.findOne(prodID)
+    .then(([[cartItem]]) => {
+      if (cartItem.quantity > 1) {
+        Cart.update(prodID, -1).then(() => {
+          res.redirect("/cart");
+        });
+      } else {
+        Cart.delete(prodID).then(() => {
+          res.redirect("/cart");
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -19,4 +19,8 @@ module.exports = class Cart {
       [quantity, productID]
     );
   }
+
+  static delete(productID) {
+    return db.execute("DELETE FROM cart WHERE productID = ?", [productID]);
+  }
 };
