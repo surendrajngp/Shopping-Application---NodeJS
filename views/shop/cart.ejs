@@ -1,0 +1,25 @@
+<%- include("../includes/starter.ejs") %> 
+
+</head>
+<body>
+    <%- include("../includes/header.ejs")  %>
+<main>
+    <h1 class="text-center">Cart Items</h1>
+    <br>
+    <div class="w-50 mx-auto">
+        <% if(cartItems.length > 0) { %>
+            <ul class="list-group">
+                <% for (item of cartItems) { %>
+                    <li class="list-group-item d-flex justify-content-between p-1">
+                       <p class="mb-0 fw-bold"> <%= item.product.title  %> </p> 
+                       <p  class="mb-0 fw-bold"> Qty :  <%= item.quantity %> <span><a href="/delete-cart-product/<%= item.product.id  %> " class="btn btn-danger">X</a></span> </p>
+                    </li>
+                <% } %> 
+                </ul>
+        <% }else{ %>
+        <p>Cart is Empty</p>    
+        <% } %> 
+    </div>
+
+</main>
+<%- include("../includes/ender.ejs") %> 

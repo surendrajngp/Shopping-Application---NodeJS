@@ -5,6 +5,10 @@ module.exports = class Cart {
     return db.execute("INSERT INTO cart (productID) VALUES(?)", [productID]);
   }
 
+  static findAll() {
+    return db.execute("SELECT * FROM cart");
+  }
+
   static findOne(productID) {
     return db.execute("SELECT * FROM cart where productID = ?", [productID]);
   }

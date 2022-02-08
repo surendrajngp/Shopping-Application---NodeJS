@@ -56,3 +56,35 @@ exports.postAddToCart = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.getCart = (req, res, next) => {
+  Cart.findAll()
+    .then(([cart]) => {
+      Product.findAll()
+        .then(([products]) => {
+          const cartProducts = [];
+          for (let item of cart) {
+            for (let product of products) {
+              if (item.productID === product.id) {
+                cartProducts.push({
+                  product: product,
+                  quantity: item.quantity,
+                });
+              }
+            }
+          }
+
+          res.render("shop/cart", {
+            title: "Cart",
+            path: "/cart",
+            cartItems: cartProducts,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
