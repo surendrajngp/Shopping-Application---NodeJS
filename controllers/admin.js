@@ -62,6 +62,17 @@ exports.postEditProduct = (req, res, next) => {
     });
 };
 
+exports.getDeleteProduct = (req, res, next) => {
+  const prodID = req.params.productID;
+  Product.delete(prodID)
+    .then(() => {
+      res.redirect("/admin/products");
+    })
+    .catch((err) => {
+      console.log("Error in delete-product : ", err);
+    });
+};
+
 exports.getAdminProducts = (req, res, next) => {
   Product.findAll().then(([result]) => {
     res.render("admin/products", {

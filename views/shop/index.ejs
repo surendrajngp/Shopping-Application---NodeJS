@@ -5,9 +5,9 @@
     <%- include("../includes/header.ejs")  %>
     <main>
       <% if(products.length > 0) { %>
-        <div class="d-flex gap-4 m-3 flex-warp">
+        <div class="row m-0 p-0 gap-3 mt-3 justify-content-center">
           <!-- <% for(product of products) { %>  -->
-            <div class="card" style="width: 18rem;">
+            <div class="card col-sm-12 col-md-3" style="width: 18rem;">
                 <img src="<%= product.imgUrl %> " class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title"><%= product.title %> </h5>

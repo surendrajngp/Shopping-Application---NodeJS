@@ -23,10 +23,14 @@ module.exports = class Product {
     return db.execute("SELECT * FROM products WHERE id = ?", [id]);
   }
 
-  updateOne(id) {
+  static updateOne(id) {
     return db.execute(
       "UPDATE products SET title = ?, price = ?, description = ?, imgUrl = ? WHERE id = ?",
       [this.title, this.price, this.description, this.imgUrl, id]
     );
+  }
+
+  static delete(id) {
+    return db.execute("DELETE FROM products WHERE id = ?", [id]);
   }
 };
